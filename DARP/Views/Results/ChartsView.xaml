@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="DARP.Views.Results.ChartsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DARP.Views.Results"
+             xmlns:Charts="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../MainWindowResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+           <Charts:Chart  Margin="30,0,30,0"  Name="mcChart3"  Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" BorderBrush="White">
+            <Charts:Chart.Series>
+                <Charts:LineSeries  Title="VNS Operators" ItemsSource="{Binding VNSOperators}"
+                                  IndependentValueBinding="{Binding Path=X}"
+                                  DependentValueBinding="{Binding Path=Y}">
+                    <Charts:LineSeries.DataPointStyle>
+                        <Style TargetType="Charts:LineDataPoint">
+                            <Setter Property="Background" Value="DarkRed"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Charts:LineDataPoint">
+                                        <Grid x:Name="Root"
+                              Opacity="0">
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Charts:LineSeries.DataPointStyle>
+                </Charts:LineSeries>
+                <Charts:LineSeries Title="Perturbation Impact" ItemsSource="{Binding PerturbationImpact}"
+                                  IndependentValueBinding="{Binding Path=X}"
+                                  DependentValueBinding="{Binding Path=Y}">
+                    <Charts:LineSeries.DataPointStyle>
+                        <Style TargetType="Charts:LineDataPoint">
+                            <Setter Property="Background" Value="#FF0066CC"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Charts:LineDataPoint">
+                                        <Grid x:Name="Root"
+                              Opacity="0">
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Charts:LineSeries.DataPointStyle>
+                </Charts:LineSeries>
+            </Charts:Chart.Series>
+            <Charts:Chart.Axes>
+                <Charts:LinearAxis Orientation="Y" Maximum="{Binding MaxValueYChart1}" Minimum="0" Title="VNS Evolution" >
+                </Charts:LinearAxis>
+            </Charts:Chart.Axes>
+        </Charts:Chart>
+        
+        <Charts:Chart  Margin="30,0,30,0"  Name="mcChart4" Grid.Column="1"  Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" BorderBrush="White">
+            <Charts:Chart.Series>
+                <Charts:LineSeries  Title="Cost Evolution" ItemsSource="{Binding CostEvolution}"
+                                  IndependentValueBinding="{Binding Path=X}"
+                                  DependentValueBinding="{Binding Path=Y}">
+                    <Charts:LineSeries.DataPointStyle>
+                        <Style TargetType="Charts:LineDataPoint">
+                            <Setter Property="Background" Value="DarkRed"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Charts:LineDataPoint">
+                                        <Grid x:Name="Root"
+                              Opacity="0">
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Charts:LineSeries.DataPointStyle>
+                </Charts:LineSeries>
+                <Charts:LineSeries Title="Fitness Evolution" ItemsSource="{Binding FitnessEvolution}"
+                                  IndependentValueBinding="{Binding Path=X}"
+                                  DependentValueBinding="{Binding Path=Y}">
+                    <Charts:LineSeries.DataPointStyle>
+                        <Style TargetType="Charts:LineDataPoint">
+                            <Setter Property="Background" Value="#FF0066CC"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Charts:LineDataPoint">
+                                        <Grid x:Name="Root"
+                              Opacity="0">
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Charts:LineSeries.DataPointStyle>
+                </Charts:LineSeries>
+            </Charts:Chart.Series>
+            <Charts:Chart.Axes>
+                <Charts:LinearAxis Orientation="Y" Maximum="{Binding MaxValueYChart2}" Minimum="0" Title="VNS Evolution" >
+                </Charts:LinearAxis>
+            </Charts:Chart.Axes>
+        </Charts:Chart>
+    </Grid>
+</UserControl>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="DARP.Views.Settings.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DARP.Views.Settings"
+        mc:Ignorable="d"
+        xmlns:views="clr-namespace:DARP.Views.Settings"
+        Title="Settings" Height="526.979" Width="521.447" Icon="/DARP;component/Resources/darp2.ico" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TabControl SelectedIndex="{Binding SelectedTab}" Margin="5">
+            <TabItem Header="General">
+                <views:GeneralView HorizontalAlignment="Center" DataContext="{Binding ChildViewModels[0]}"></views:GeneralView>
+            </TabItem>
+            <TabItem Header="ILS Configuration">
+                <views:ILSConfigurationView Margin="0,20" HorizontalAlignment="Center" VerticalAlignment="Top"  DataContext="{Binding ChildViewModels[1]}"></views:ILSConfigurationView>
+            </TabItem>
+        </TabControl>
+
+            <!--Botones-->
+            <Button  Content="Restore Default Settings" x:Name="button" Command="{Binding RestoreDefaultValuesCommand}" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="1" Width="140">
+            </Button>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button IsDefault="True" Command="{Binding SaveCommand}" Click="Button_Click"  Width ="80" Margin="0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/DARP;component/Resources/ok_16.png" Stretch="Fill" Height="16" Width="16"/>
+                        <Label Content="_Ok"/>
+                    </StackPanel>
+                </Button>
+
+                <Button IsCancel="True" Width ="80" Margin="10,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/DARP;component/Resources/error_16.png" Stretch="Fill" Height="16" Width="16"/>
+                        <Label Content="_Cancel" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+    </Grid>
+</Window>

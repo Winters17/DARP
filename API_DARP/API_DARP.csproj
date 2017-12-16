@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE6872D4-E571-4B7D-A405-D1A0706A486B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>API_DARP</RootNamespace>
+    <AssemblyName>API_DARP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calculations\Algorithms\DARPAlgorithms.cs" />
+    <Compile Include="Calculations\Constants.cs" />
+    <Compile Include="Calculations\DARPOptimization.cs" />
+    <Compile Include="Calculations\Metaheuristics\Costs.cs" />
+    <Compile Include="Calculations\Metaheuristics\ILS\ILSMetaheuristic.cs" />
+    <Compile Include="Calculations\Metaheuristics\ILS\Perturbations.cs" />
+    <Compile Include="Calculations\Metaheuristics\IMetaheuristic.cs" />
+    <Compile Include="Calculations\Metaheuristics\MetaheuristicFactory.cs" />
+    <Compile Include="Calculations\Metaheuristics\Node.cs" />
+    <Compile Include="Calculations\Metaheuristics\VNS\VNSMetaheuristic.cs" />
+    <Compile Include="Calculations\Validation\Validator.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Controllers.cs" />
+    <Compile Include="Data\Constants.cs" />
+    <Compile Include="Data\DataController.cs" />
+    <Compile Include="Data\GenericCopier.cs" />
+    <Compile Include="Data\Model\Charts\ChartSerie.cs" />
+    <Compile Include="Data\Model\InputDataLoaded.cs" />
+    <Compile Include="Data\Model\RequestCoordinates.cs" />
+    <Compile Include="Data\Model\Error\Error.cs" />
+    <Compile Include="Data\Model\Problem.cs" />
+    <Compile Include="Data\Model\Request.cs" />
+    <Compile Include="Data\Model\RequestTimeWindow.cs" />
+    <Compile Include="Data\Model\Summary\Results\ILSSummary.cs" />
+    <Compile Include="Data\Model\Summary\Results\VNSSummary.cs" />
+    <Compile Include="Data\Model\Settings\GeneralSettings.cs" />
+    <Compile Include="Data\Model\Settings\IHeuristicConfigurationSetting.cs" />
+    <Compile Include="Data\Model\Settings\ILSConfigurationSettings.cs" />
+    <Compile Include="Data\Model\Solution.cs" />
+    <Compile Include="Data\Model\Summary\ILSEvolution.cs" />
+    <Compile Include="Data\Model\Summary\SummaryDetails.cs" />
+    <Compile Include="Data\Model\Summary\VNSOperators.cs" />
+    <Compile Include="Data\Model\Vehicle.cs" />
+    <Compile Include="Data\Readers\ReaderController.cs" />
+    <Compile Include="Data\Readers\DARPReader.cs" />
+    <Compile Include="Data\Writers\DARPWriter.cs" />
+    <Compile Include="Data\Writers\WriterController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PSAPI\IProcess.cs" />
+    <Compile Include="PSAPI\ProcessController.cs" />
+    <Compile Include="PSAPI\Processes\ExportCSV.cs" />
+    <Compile Include="PSAPI\Processes\LoadDARP.cs" />
+    <Compile Include="PSAPI\Processes\RunMetaheuristic.cs" />
+    <Compile Include="SplashGlobalData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

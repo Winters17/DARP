@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="DARP.Views.UserControls.MenuBarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DARP.Views.UserControls"
+             xmlns:converters="clr-namespace:DARP.Views.Converters"
+             mc:Ignorable="d" 
+             Width="Auto" Height="Auto">
+
+    <UserControl.Resources>
+        <converters:NullToVisibilityConverter x:Key="ButtonVisibility"></converters:NullToVisibilityConverter>
+        <Style x:Key="MetaheuristicsText" TargetType="Label">
+            <Setter Property="FontSize" Value="14pt"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+        <Grid>
+        <ToolBar Height="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Grid.Column="0" BorderThickness="0" Width ="95" Margin="10,2,0,0" Command="{Binding LoadInput}" Background="Transparent">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/DARP;component/Resources/open.png" Width="30" Height="30"></Image>
+                        <Label Content="Load Input" />
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="1"  Width ="90" Background="Transparent" Margin="0,2,0,0" Command="{Binding RunHeuristic}" BorderThickness="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/DARP;component/Resources/run.png" Width="32" Height="32"/>
+                        <Label Content="Run" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button IsEnabled="{Binding HeuristicExecuted}"  Grid.Column="2"  Width ="90" Background="Transparent" Margin="0,2,0,0" Command="{Binding ExportCSV}" BorderThickness="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/DARP;component/Resources/csv_32.png" Width="32" Height="32"/>
+                        <Label Content="Export CSV" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Label Content="DARP" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"></Label>
+            </Grid>
+            <Separator></Separator>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="0.4*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button  Width ="90" Background="Transparent" Margin="0,2,0,0" Command="{Binding SettingsCommand}" BorderThickness="0" Grid.Column="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/DARP;component/Resources/options.png" Width="32" Height="32"/>
+                        <Label Content="Settings"/>
+                    </StackPanel>
+                </Button>
+                <Label VerticalAlignment="Bottom"  Grid.Row="1" Content="Options" Grid.ColumnSpan="3" HorizontalAlignment="Center"></Label>
+            </Grid>
+            <Separator></Separator>
+
+        </ToolBar>
+    </Grid>
+</UserControl>

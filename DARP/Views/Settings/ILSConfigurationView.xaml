@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="DARP.Views.Settings.ILSConfigurationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DARP.Views.Settings"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" Height="107.659" Width="373.48">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Content="Algorithm Repetitions"></Label>
+        <Label Content="Max Iterations" Grid.Row="1"></Label>
+        <Label Content="Max It. without Improvement" Grid.Row="2"></Label>
+        <xctk:IntegerUpDown  Grid.Column="1" Margin="5" Minimum="1" Maximum="25" Width="70" Value="{Binding ILSConfiguration.MaxRepetitions}"/>
+        <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="5" Minimum="1" Maximum="10000" Width="70" Value="{Binding ILSConfiguration.MaxILSIterations}"/>
+        <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="5" Minimum="1" Maximum="5000" Width="70" Value="{Binding ILSConfiguration.MaxILSNoImprovement}"/>
+    </Grid>
+</UserControl>

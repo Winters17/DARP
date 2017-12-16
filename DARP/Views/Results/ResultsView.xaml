@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="DARP.Views.Results.ResultsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DARP.Views.Results"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="908.943">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../MainWindowResources.xaml"/>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Initial Solution" Margin="0" FontWeight="Bold" FontSize="16" Foreground="SteelBlue"></Label>
+                <StackPanel Orientation="Vertical" Margin="0,10" Grid.Row="1">
+                    <Label Content="Vehicles details:"></Label>
+                    <DataGrid Style="{StaticResource ResourceKey=TablesView}" HeadersVisibility="Column" Background="White" ItemsSource="{Binding TableRoutesInput}" HorizontalScrollBarVisibility="Visible" ColumnWidth="Auto"/>
+                </StackPanel>
+                <Grid Grid.Row="2" Margin="0,25,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Right" Margin="50,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Solution Details" FontWeight="Bold"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding SolutionCost}" Grid.Row="1" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Cost:" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding TotalDuration}" Grid.Row="2" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Total Duration:" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding TotalWaitingTime}" Grid.Row="3" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="T. Waiting Time:" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding TTravelTime}" Grid.Row="4" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Total transition:" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                    </Grid>
+                    <Grid HorizontalAlignment="Left" Grid.Column="1" Margin="50,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Violation Constraints" FontWeight="Bold" Foreground="Black"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding VDuration}" Foreground="{Binding VDuration, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" Grid.Row="1" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Duration:" Grid.Row="1" HorizontalAlignment="Right" Foreground="{Binding VDuration, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding VTimeWindow}" Grid.Row="2" Foreground="{Binding VTimeWindow, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Time Window:" Grid.Row="2" HorizontalAlignment="Right" Foreground="{Binding VTimeWindow, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding VRideTime}" Grid.Row="3" Foreground="{Binding VRideTime, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Ride Time:" Grid.Row="3" HorizontalAlignment="Right" Foreground="{Binding VRideTime, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding VLoad}" Grid.Row="4" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Load:" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Separator Grid.Column="1" Margin="5,0">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Model Solution" Margin="0" FontWeight="Bold" FontSize="16" Foreground="SteelBlue"></Label>
+                <StackPanel Orientation="Vertical" Margin="0,10" Grid.Row="1">
+                    <Label Content="Vehicles details:"></Label>
+                    <DataGrid Style="{StaticResource ResourceKey=TablesView}" HeadersVisibility="Column" Background="White" ItemsSource="{Binding TableRoutesModel}" HorizontalScrollBarVisibility="Visible" ColumnWidth="Auto"/>
+                </StackPanel>
+                <Grid Grid.Row="2" Margin="0,25,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Right" Margin="50,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Solution Details" FontWeight="Bold"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelSolutionCost}" Grid.Row="1" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Cost:" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelTotalDuration}" Grid.Row="2" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Total Duration:" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelTotalWaitingTime}" Grid.Row="3" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="T. Waiting Time:" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelTTravelTime}" Grid.Row="4" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Total transition:" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ExecutionTime}" Grid.Row="5" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Execution Time:" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                    </Grid>
+                    <Grid HorizontalAlignment="Left" Grid.Column="1" Margin="50,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Violation Constraints" FontWeight="Bold" Foreground="Black"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelVDuration}" Foreground="{Binding ModelVDuration, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" Grid.Row="1" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Duration:" Grid.Row="1" HorizontalAlignment="Right" Foreground="{Binding ModelVDuration, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelVTimeWindow}" Grid.Row="2" Foreground="{Binding ModelVTimeWindow, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Time Window:" Grid.Row="2" HorizontalAlignment="Right" Foreground="{Binding ModelVTimeWindow, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelVRideTime}" Grid.Row="3" Foreground="{Binding ModelVRideTime, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Ride Time:" Grid.Row="3" HorizontalAlignment="Right" Foreground="{Binding ModelVRideTime, Converter={StaticResource ResourceKey=ViolationRedColorConverter}}" VerticalAlignment="Center"></Label>
+                        <TextBlock Grid.Column="1" Text="{Binding ModelVLoad}" Grid.Row="4" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <Label Content="Load:" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"></Label>
+                    </Grid>
+                </Grid>
+            </Grid>
+    </Grid>
+    </ScrollViewer>
+</UserControl>

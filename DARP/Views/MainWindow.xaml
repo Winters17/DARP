@@ -1,0 +1,54 @@
+﻿<Window x:Class="DARP.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DARP"
+        xmlns:uc="clr-namespace:DARP.Views.UserControls"
+        mc:Ignorable="d"
+        xmlns:results="clr-namespace:DARP.Views.Results"
+        xmlns:converters="clr-namespace:DARP.Views.Converters"
+        Title="DARP - Dial a Ride Problem" WindowState="Maximized"  Icon="../Resources/darp2.ico" WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <uc:MenuBarUC></uc:MenuBarUC>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding ProblemsInput, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+            <Label Content="DARP Selected"></Label>
+            <ComboBox Grid.Row="1"   Width="90" Margin="5,5,5,0" ItemsSource="{Binding DARPProblems, Mode=TwoWay}" SelectedItem="{Binding DARPSelected, Mode=TwoWay}"></ComboBox>
+        </StackPanel>
+        <TabControl SelectedIndex="{Binding TabSelected}"  Grid.Row="2" Margin="5,10,5,5" Visibility="{Binding ProblemsInput, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+            <TabItem Header="DARP Input" Visibility="{Binding ProblemsInput, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+                <DataGrid Grid.Row="1" ItemsSource="{Binding ProblemsInput}" SelectedIndex="{Binding ProblemSelected}" Style="{StaticResource ResourceKey=TablesView}" Background="White"></DataGrid>
+            </TabItem>
+            <TabItem Header="DARP Solution" Visibility="{Binding DARPResults, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+                <results:ResultsView DataContext="{Binding DARPResults}"></results:ResultsView>
+            </TabItem>
+            <TabItem Header="ILS Evolution" Visibility="{Binding ILSEvolution, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+                <results:ILSEvolutionView DataContext="{Binding ILSEvolution}"></results:ILSEvolutionView>
+            </TabItem>
+            <TabItem Header="VNS Operators" Visibility="{Binding VNSOperators, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+                <results:VNSOperatorsView DataContext="{Binding VNSOperators}"></results:VNSOperatorsView>
+            </TabItem>
+            <TabItem Header="Summary" Visibility="{Binding AlgorithmSummary, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+                <results:SummaryAlgorithm DataContext="{Binding AlgorithmSummary}"></results:SummaryAlgorithm>
+            </TabItem>
+            <TabItem Header="Charts" Visibility="{Binding ChartsViewModel, Converter={StaticResource ResourceKey=TablesVisibilityConverter}}">
+                <results:ChartsView DataContext="{Binding ChartsViewModel}"></results:ChartsView>
+            </TabItem>
+        </TabControl>
+            <StatusBar Grid.Row="3" Background="{Binding StatusType, Converter={StaticResource StatusTwoBrush}}" >
+            <Image Source="{Binding StatusType, Converter={StaticResource StatusTwoIcon}}" Margin="5, 0" Stretch="Fill" Height="16" Width="16"/>
+            <TextBlock Text="{Binding StatusText}" />
+        </StatusBar>
+    </Grid>
+</Window>

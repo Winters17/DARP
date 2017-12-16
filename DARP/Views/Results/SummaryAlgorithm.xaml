@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="DARP.Views.Results.SummaryAlgorithm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DARP.Views.Results"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="../MainWindowResources.xaml"/>
+    </UserControl.Resources>
+
+    <Grid Margin="0,0,-424,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Margin="50,15">
+            <Label Content="ILS Summary" FontWeight="Bold" FontSize="16" Foreground="SteelBlue"></Label>
+            <DataGrid Height="Auto" Width="360" ItemsSource="{Binding ILSSummary}"  Style="{StaticResource ResourceKey=TablesView}"></DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="0,15,50,0" HorizontalAlignment="Right">
+            <Label Content="VNS Operators" FontWeight="Bold" FontSize="16" Foreground="SteelBlue" > </Label>
+            <DataGrid Height="Auto" Width="360" ItemsSource="{Binding VNSSummary}" Grid.Row="1" Style="{StaticResource ResourceKey=TablesView}"></DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>
